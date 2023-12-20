@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/menu_functions_simcards.iml" filepath="$PROJECT_DIR$/menu_functions_simcards.iml" />
+      <module fileurl="file://$PROJECT_DIR$/android/menu_functions_simcards_android.iml" filepath="$PROJECT_DIR$/android/menu_functions_simcards_android.iml" />
+    </modules>
+  </component>
+</project>
