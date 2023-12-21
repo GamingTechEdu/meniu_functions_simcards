@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../widgets/drop_down_widget.dart';
+import '../../../widgets/drop_down_widget.dart';
 
 class DropDownAtom extends StatelessWidget {
   const DropDownAtom({
