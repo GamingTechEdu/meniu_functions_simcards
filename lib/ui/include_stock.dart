@@ -1,18 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:intl/intl.dart';
+
 import 'package:menu_functions_simcards/api/api_client.dart';
 import 'package:menu_functions_simcards/common/global_config.dart';
 import 'package:menu_functions_simcards/common/simcard_focusnode.dart';
 import 'package:menu_functions_simcards/common/tabbar_back.dart';
 import 'package:menu_functions_simcards/kdl_controller.dart';
 import 'package:menu_functions_simcards/models/task_model.dart';
-import 'package:menu_functions_simcards/simcard/widgets/date_textform.dart';
-import 'package:menu_functions_simcards/simcard/widgets/iccid_textform.dart';
-import 'package:menu_functions_simcards/simcard/widgets/ip_textform.dart';
-import 'package:menu_functions_simcards/simcard/widgets/msisdn_textform.dart';
-import 'package:menu_functions_simcards/simcard/widgets/simcard_supplier.dart';
-import 'package:menu_functions_simcards/simcard/widgets/simcon_textform.dart';
-import 'package:provider/provider.dart';
+import 'package:menu_functions_simcards/ui/atoms/date_textform.dart';
+
 import './model.dart';
 import 'atomsStock/stock.dart';
 

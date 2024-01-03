@@ -12,7 +12,7 @@ import 'package:menu_functions_simcards/models/task_model.dart';
 import './widgets/widgets.dart';
 
 import '../api/table_controller.dart';
-import '../ui/pages/include/atoms/drop_down_atom.dart';
+import 'atoms/atoms.dart';
 
 class SimcardInclude extends StatefulWidget {
   final OnOutput onOutput;

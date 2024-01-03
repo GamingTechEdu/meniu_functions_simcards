@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../common/global_config.dart';
 import '../../models/task_model.dart';
+import '../widgets/widgets.dart';
 
 class SimcardSupplier extends StatefulWidget {
   String? selectedValue, selectedValue2;
@@ -31,91 +32,49 @@ class _SimcardSupplierState extends State<SimcardSupplier> {
       children: [
         Row(
           children: [
-            Radio(
+            IncludeRadioSupplierWidget(
               value: 'NLT',
               groupValue: widget.selectedValue,
-              onChanged: (value) {
-                setState(() {
-                  widget.taskModel.idSupplier = value;
-                  widget.selectedValue = value;
-                  widget.onChanged!(value!);
-                });
-              },
+              taskModel: widget.taskModel,
             ),
-            Text("NLT"),
+            const Text("NLT"),
             GlobalConfig.formHorizontalSpace,
-            Radio(
+            IncludeRadioSupplierWidget(
               value: "ARQIA",
               groupValue: widget.selectedValue,
-              onChanged: (value) {
-                setState(() {
-                  widget.taskModel.idSupplier = value;
-                  widget.selectedValue = value;
-                  widget.onChanged!(value!);
-                });
-              },
+              taskModel: widget.taskModel,
             ),
-            Text("ARQIA"),
+            const Text("ARQIA"),
             GlobalConfig.formHorizontalSpace,
-            Radio(
+            IncludeRadioSupplierWidget(
               value: "LIRA",
               groupValue: widget.selectedValue,
-              onChanged: (value) {
-                setState(() {
-                  widget.taskModel.idSupplier = value;
-                  widget.selectedValue = value;
-                  widget.onChanged!(value!);
-                });
-              },
+              taskModel: widget.taskModel,
             ),
-            Text("LIRA"),
+            const Text("LIRA"),
           ],
         ),
         GlobalConfig.formVerticalSpace,
         if (widget.selectedValue != null && widget.selectedValue == "NLT")
-          DropdownButtonFormField(
-            elevation: 1,
-            isDense: true,
-            isExpanded: true,
-            icon: const Icon(Icons.keyboard_arrow_down_outlined),
-            focusColor: Colors.transparent,
-            borderRadius: BorderRadius.circular(5),
-            hint: const Text("Selecione o Plano"),
+          IncludeDropSupplierAtom(
             items: NltPlan.map((plan) {
               return DropdownMenuItem<String>(
                 value: plan,
                 child: Text(plan),
               );
             }).toList(),
-            onChanged: (value) {
-              // selectedCostumer = value!;
-              widget.taskModel.idPlan = value;
-              plan = value;
-              widget.onChanged2!(value!);
-            },
+            taskModel: widget.taskModel,
           ),
         GlobalConfig.formHorizontalSpace,
         if (widget.selectedValue != null && widget.selectedValue == "ARQIA")
-          DropdownButtonFormField(
-            elevation: 1,
-            isDense: true,
-            isExpanded: true,
-            icon: const Icon(Icons.keyboard_arrow_down_outlined),
-            borderRadius: BorderRadius.circular(5),
-            focusColor: Colors.transparent,
-            hint: const Text("Selecione o Plano"),
+          IncludeDropSupplierAtom(
             items: ArqiaPlan.map((plan) {
               return DropdownMenuItem<String>(
                 value: plan,
                 child: Text(plan),
               );
             }).toList(),
-            onChanged: (value) {
-              widget.taskModel.idPlan = value;
-              plan = value;
-              print(widget.onChanged2!(value!));
-              widget.onChanged2!(value!);
-            },
+            taskModel: widget.taskModel,
           ),
         if (widget.selectedValue != null && widget.selectedValue == "LIRA")
           Column(
@@ -152,27 +111,14 @@ class _SimcardSupplierState extends State<SimcardSupplier> {
                 ],
               ),
               GlobalConfig.formVerticalSpace10,
-              DropdownButtonFormField(
-                elevation: 1,
-                isDense: true,
-                isExpanded: true,
-                icon: const Icon(Icons.keyboard_arrow_down_outlined),
-                borderRadius: BorderRadius.circular(5),
-                focusColor: Colors.transparent,
-                hint: const Text("Selecione o Plano"),
-                items: ArqiaPlan.map((plan) {
-                  return DropdownMenuItem<String>(
-                    value: plan,
-                    child: Text(plan),
-                  );
-                }).toList(),
-                onChanged: (value) {
-                  widget.taskModel.idPlan = value;
-                  plan = value;
-                  print(widget.onChanged2!(value!));
-                  widget.onChanged2!(value!);
-                },
-              ),
+              IncludeDropSupplierAtom(
+                  items: ArqiaPlan.map((plan) {
+                    return DropdownMenuItem<String>(
+                      value: plan,
+                      child: Text(plan),
+                    );
+                  }).toList(),
+                  taskModel: widget.taskModel),
             ],
           ),
       ],
