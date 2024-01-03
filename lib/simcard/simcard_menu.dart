@@ -27,24 +27,10 @@ class SimcardMenu extends StatelessWidget {
             },
           ),
           MenuButton(
-            label: 'Editar SIMCARD',
-            icon: 'edit.svg',
+            label: 'Incluir ESTOQUE',
+            icon: 'include_batch.svg',
             onPressed: () {
               onPressed(MenuButtonType.simcardEdit);
-            },
-          ),
-          MenuButton(
-            label: 'Exportar Relatório',
-            icon: 'replace.svg',
-            onPressed: () {
-              onPressed(MenuButtonType.simcardInclude);
-            },
-          ),
-          MenuButton(
-            label: 'Excluir Simcard',
-            icon: 'remove.svg',
-            onPressed: () {
-              onPressed(MenuButtonType.simcardInclude);
             },
           ),
         ],

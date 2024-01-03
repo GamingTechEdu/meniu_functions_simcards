@@ -17,8 +17,8 @@ class DataValidation {
       final List<String> names = [];
 
       for (var item in jsonData) {
-        if (item['numerochip'] != null) {
-          names.add(item['numerochip']);
+        if (item['iccid'] != null) {
+          names.add(item['iccid']);
         }
       }
 
@@ -92,7 +92,7 @@ class DataRecordSimcard {
     print("Data de Instalação: ${task.idDateinsta}");
     print("ID da APN: ${task.idApn}");
 
-    final apiUrl = Uri.parse("http://187.122.102.36:60060/recordSimcard/");
+    final apiUrl = Uri.parse("http://187.122.102.36:60060/recordSimcard");
     // final apiUrl = Uri.parse('http://localhost:8080/recordSimcard/');
     print(jsonBody);
     try {

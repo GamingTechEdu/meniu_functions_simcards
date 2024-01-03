@@ -49,19 +49,19 @@ class TaskModel {
 
   Map<String, dynamic> toJson() {
     return {
-      "idCostumer": idCostumer,
-      "idSimcard": idSimcard,
-      "idSimcon": idSimcon,
-      "idLine": idLine,
-      "idIP": idIP,
-      "idSupplier": idSupplier,
-      "idSlot": idSlot,
-      "observations": idObservations,
-      "supplierType": supplierType,
-      "idPlan": idPlan,
-      "idDateActi": idDateActi,
-      "idDateinsta": idDateinsta,
-      "idApn": idApn,
+      "Client": idCostumer,
+      "Iccid": idSimcard,
+      "Simcon": idSimcon,
+      "Msisdn": idLine,
+      "Ip": idIP,
+      "Supplier": idSupplier,
+      "Slot": idSlot,
+      "Obs": idObservations,
+      "Operator": supplierType,
+      "Plan": idPlan,
+      "Activationdate": idDateActi,
+      "Installationdate": idDateinsta,
+      "Apn": idApn,
     };
   }
 }

@@ -66,7 +66,7 @@ class _IccidTextFormState extends State<IccidTextForm> {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: Text('Validação'),
+          title: const Text('Validação'),
           content:
               Text(_isInList ? 'O ICCID já está cadastrado!' : 'ICCID válido!'),
           actions: [
@@ -74,7 +74,7 @@ class _IccidTextFormState extends State<IccidTextForm> {
               onPressed: () {
                 Navigator.of(context).pop();
               },
-              child: Text('OK'),
+              child: const Text('OK'),
             ),
           ],
         );

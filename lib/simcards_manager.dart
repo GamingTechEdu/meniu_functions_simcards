@@ -7,6 +7,7 @@ import 'package:menu_functions_simcards/simcard/edit_simcard.dart';
 import 'package:menu_functions_simcards/simcard/model.dart';
 import 'package:menu_functions_simcards/simcard/simcard_include.dart';
 import 'package:menu_functions_simcards/simcard/simcard_menu.dart';
+import 'package:menu_functions_simcards/toggle_tabs.dart';
 import 'called_filter_tabs.dart';
 
 class SimcardsManager extends StatefulWidget {
@@ -90,15 +91,15 @@ class _SimcardsManagerState extends State<SimcardsManager> {
       children: [
         // if (activeAction == MenuButtonType.simcardMenu)
         //   ToogleTabs(
-        //       onTabSelect: (CalledFilterTabs value) {
-        //         setState(() {
-        //           final activeMenu = value.status["type"]!;
-        //           if (activeMenu == "SIMCARD") {
-        //             activeAction = MenuButtonType.simcardMenu;
-        //           }
-        //         });
-        //       },
-        //       activeStatus: activeStatus
+        //     onTabSelect: (CalledFilterTabs value) {
+        //       setState(() {
+        //         final activeMenu = value.status["type"]!;
+        //         if (activeMenu == "SIMCARD") {
+        //           activeAction = MenuButtonType.simcardMenu;
+        //         }
+        //       });
+        //     },
+        //     activeStatus: activeStatus,
         //   ),
         if (activeAction == MenuButtonType.simcardMenu)
           SimcardMenu(onPressed: (value) {

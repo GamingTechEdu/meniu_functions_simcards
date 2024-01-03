@@ -45,7 +45,7 @@ class ToogleTabsState extends State<ToogleTabs> {
             hoverColor: Colors.transparent,
             focusColor: Colors.transparent,
             highlightColor: Colors.transparent,
-            selectedColor: Colors.black,
+            selectedColor: Color.fromARGB(255, 204, 161, 96),
             splashColor: Colors.transparent,
             onPressed: (int index) {
               isSelected = [false, false];
@@ -91,7 +91,7 @@ class ToogleTabsState extends State<ToogleTabs> {
                   children: <Widget>[
                     GlobalConfig.formVerticalSpace,
                     const Text(
-                      'SIMCON',
+                      'ESTOQUE',
                       style:
                           TextStyle(fontSize: 14, fontWeight: FontWeight.w500),
                     ),
@@ -108,7 +108,7 @@ class ToogleTabsState extends State<ToogleTabs> {
             width: 45,
             height: 45,
           ),
-          SizedBox(width: 15),
+          const SizedBox(width: 15),
         ],
       ),
     );

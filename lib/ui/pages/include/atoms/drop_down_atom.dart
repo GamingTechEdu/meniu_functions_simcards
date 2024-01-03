@@ -3,8 +3,10 @@ import 'package:flutter/material.dart';
 import '../../../widgets/drop_down_widget.dart';
 
 class DropDownAtom extends StatelessWidget {
+  final Function(String?)? onChanged;
   const DropDownAtom({
     super.key,
+    this.onChanged,
   });
 
   @override
@@ -31,9 +33,7 @@ class DropDownAtom extends StatelessWidget {
           child: Text(costumer),
         );
       }).toList(),
-      onChanged: (value) {
-        selectedCostumer = value!;
-      },
+      onChanged: onChanged,
       validator: (value) {
         if (value == 'Selecione um Cliente') {
           return 'Por favor, selecione um cliente';
