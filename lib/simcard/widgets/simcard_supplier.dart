@@ -6,21 +6,12 @@ import '../../models/task_model.dart';
 class SimcardSupplier extends StatefulWidget {
   String? selectedValue;
   final Function(String)? onChanged, onChanged2;
-  final String valueOne, valueTwo;
-  final String titleOne, titleTwo;
-  final String slotOne, slotTwo;
   final TaskModel taskModel;
 
   SimcardSupplier({
     this.onChanged,
     this.onChanged2,
     required this.selectedValue,
-    required this.valueOne,
-    required this.valueTwo,
-    required this.titleOne,
-    required this.titleTwo,
-    required this.slotOne,
-    required this.slotTwo,
     required this.taskModel,
   });
 
@@ -39,32 +30,43 @@ class _SimcardSupplierState extends State<SimcardSupplier> {
         Row(
           children: [
             Radio(
-              value: widget.valueOne,
+              value: 'NLT',
               groupValue: widget.selectedValue,
               onChanged: (value) {
                 setState(() {
                   widget.taskModel.idSupplier = value;
-                  widget.taskModel.idSlot = widget.slotOne;
                   widget.selectedValue = value;
                   widget.onChanged!(value!);
                 });
               },
             ),
-            Text(widget.titleOne),
+            Text("NLT"),
             GlobalConfig.formHorizontalSpace,
             Radio(
-              value: widget.valueTwo,
+              value: "ARQIA",
               groupValue: widget.selectedValue,
               onChanged: (value) {
                 setState(() {
                   widget.taskModel.idSupplier = value;
-                  widget.taskModel.idSlot = widget.slotTwo;
                   widget.selectedValue = value;
                   widget.onChanged!(value!);
                 });
               },
             ),
-            Text(widget.titleTwo),
+            Text("ARQIA"),
+            GlobalConfig.formHorizontalSpace,
+            Radio(
+              value: "LIRA",
+              groupValue: widget.selectedValue,
+              onChanged: (value) {
+                setState(() {
+                  widget.taskModel.idSupplier = value;
+                  widget.selectedValue = value;
+                  widget.onChanged!(value!);
+                });
+              },
+            ),
+            Text("LIRA"),
           ],
         ),
         if (widget.selectedValue != null && widget.selectedValue == "NLT")
@@ -91,6 +93,28 @@ class _SimcardSupplierState extends State<SimcardSupplier> {
           ),
         GlobalConfig.formHorizontalSpace,
         if (widget.selectedValue != null && widget.selectedValue == "ARQIA")
+          DropdownButtonFormField(
+            elevation: 1,
+            isDense: true,
+            isExpanded: true,
+            icon: const Icon(Icons.keyboard_arrow_down_outlined),
+            borderRadius: BorderRadius.circular(5),
+            focusColor: Colors.transparent,
+            hint: const Text("Selecione o Plano"),
+            items: ArqiaPlan.map((plan) {
+              return DropdownMenuItem<String>(
+                value: plan,
+                child: Text(plan),
+              );
+            }).toList(),
+            onChanged: (value) {
+              widget.taskModel.idPlan = value;
+              plan = value;
+              print(widget.onChanged2!(value!));
+              widget.onChanged2!(value!);
+            },
+          ),
+        if (widget.selectedValue != null && widget.selectedValue == "LIRA")
           DropdownButtonFormField(
             elevation: 1,
             isDense: true,

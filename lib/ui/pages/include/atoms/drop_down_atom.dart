@@ -17,7 +17,7 @@ class DropDownAtom extends StatelessWidget {
       'GUARULHOS LUZ'
     ];
 
-    String selectedCostumer = costumerList[0];
+    String selectedCostumer = costumerList[1];
 
     return DropDownWidget(
       elevation: 1,

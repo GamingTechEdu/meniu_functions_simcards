@@ -2,6 +2,7 @@ class TaskModel {
   String? idCostumer;
   String? idSimcard;
   String? idSimcon;
+  String? nfSimcon;
   String? idLine;
   String idIP;
   String? idSupplier;
@@ -17,6 +18,7 @@ class TaskModel {
     this.idCostumer,
     this.idSimcard,
     this.idSimcon,
+    this.nfSimcon,
     this.idLine,
     this.idIP = "",
     this.idSupplier,
@@ -34,6 +36,7 @@ class TaskModel {
       idCostumer: json["idCostumer"],
       idSimcard: json["idSimcard"],
       idSimcon: json["idSimcon"],
+      nfSimcon: json["nfSimcon"],
       idLine: json["idLine"],
       idIP: json["idIP"],
       idSupplier: json["idSupplier"],
@@ -52,6 +55,7 @@ class TaskModel {
       "Client": idCostumer,
       "Iccid": idSimcard,
       "Simcon": idSimcon,
+      "Nfsimcon": nfSimcon,
       "Msisdn": idLine,
       "Ip": idIP,
       "Supplier": idSupplier,

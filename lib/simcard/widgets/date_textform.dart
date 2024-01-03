@@ -3,7 +3,6 @@ import 'package:flutter/services.dart';
 // import 'package:flutter_side_menu/src/kdl_menu_simcards/common/simcard_focusnode.dart';
 
 class DateTextForm extends StatefulWidget {
-  final FocusNode? focusNode;
   final TextEditingController controller;
   final String labelText;
   final Function(String)? onChanged;
@@ -11,7 +10,6 @@ class DateTextForm extends StatefulWidget {
   const DateTextForm({
     Key? key,
     this.onChanged,
-    this.focusNode,
     required this.controller,
     required this.labelText,
   }) : super(key: key);
@@ -29,6 +27,8 @@ class _DateTextFormState extends State<DateTextForm> {
       initialDate: DateTime.now(),
       firstDate: DateTime(2000),
       lastDate: DateTime(2101),
+      cancelText: 'Cancelar',
+      confirmText: 'Confirmar',
     );
 
     if (pickedDate != null && pickedDate != DateTime.now()) {
@@ -43,7 +43,6 @@ class _DateTextFormState extends State<DateTextForm> {
   Widget build(BuildContext context) {
     return Expanded(
       child: TextFormField(
-        focusNode: widget.focusNode,
         inputFormatters: [
           FilteringTextInputFormatter.allow(
             RegExp(r'[0-9/]'),

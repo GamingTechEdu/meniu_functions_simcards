@@ -48,7 +48,6 @@ class _IpTextFormState extends State<IpTextForm> {
       onChanged: (value) {
         if (value.length == 16) {
           FocusNodes.ipFocusNode.unfocus();
-          FocusScope.of(context).requestFocus(FocusNodes.DateActiveFocusNode);
         }
       },
       onSaved: (value) {

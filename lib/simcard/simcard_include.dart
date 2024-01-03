@@ -1,19 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
+import 'package:provider/provider.dart';
 import 'package:intl/intl.dart';
+
 import 'package:menu_functions_simcards/api/api_client.dart';
 import 'package:menu_functions_simcards/common/global_config.dart';
 import 'package:menu_functions_simcards/common/simcard_focusnode.dart';
 import 'package:menu_functions_simcards/common/tabbar_back.dart';
 import 'package:menu_functions_simcards/kdl_controller.dart';
 import 'package:menu_functions_simcards/models/task_model.dart';
-import 'package:menu_functions_simcards/simcard/widgets/date_textform.dart';
-import 'package:menu_functions_simcards/simcard/widgets/iccid_textform.dart';
-import 'package:menu_functions_simcards/simcard/widgets/ip_textform.dart';
-import 'package:menu_functions_simcards/simcard/widgets/msisdn_textform.dart';
-import 'package:menu_functions_simcards/simcard/widgets/simcard_supplier.dart';
-import 'package:menu_functions_simcards/simcard/widgets/simcon_textform.dart';
-import 'package:provider/provider.dart';
+
+import './widgets/widgets.dart';
 
 import '../api/table_controller.dart';
 import '../ui/pages/include/atoms/drop_down_atom.dart';
@@ -48,7 +44,7 @@ class _SimcardIncludeState extends State<SimcardInclude> {
   String? supplierType;
   final controller = KdlController();
   final RegExp dateRegex = RegExp(r'^\d{2}/\d{2}/\d{4}$');
-  String selectedCostumer = costumerList[0];
+  String selectedCostumer = costumerList[1];
   String? costumer = '';
   bool isInListIccid = false;
   bool isInListSimcon = false;
@@ -81,7 +77,7 @@ class _SimcardIncludeState extends State<SimcardInclude> {
         height: MediaQuery.of(context).size.height,
         child: Stack(
           children: [
-            TabBarBack(onBack: widget.onBack, title: "INCLUIR / simcard"),
+            TabBarBack(onBack: widget.onBack, title: "INCLUIR / SIMCARD"),
             Positioned(
               top: 45,
               bottom: 0,
@@ -122,18 +118,24 @@ class _SimcardIncludeState extends State<SimcardInclude> {
                                 ),
                                 GlobalConfig.formVerticalSpace,
                                 SimconTextForm(
-                                    controller: controller.idSimconController,
-                                    callback: IsInListSimcon,
-                                    taskModel: widget.taskModel,
-                                    validator: (value) {
-                                      if (isInListSimcon == true) {
-                                        return "Número do SIMCON já cadastrado!";
-                                      }
-                                      if (value!.isEmpty) {
-                                        return "Número do SIMCON obrigatório";
-                                      }
-                                      return null;
-                                    }),
+                                  controller: controller.idSimconController,
+                                  callback: IsInListSimcon,
+                                  taskModel: widget.taskModel,
+                                  validator: (value) {
+                                    if (isInListSimcon == true) {
+                                      return "Número do SIMCON já cadastrado!";
+                                    }
+                                    if (value!.isEmpty) {
+                                      return "Número do SIMCON obrigatório";
+                                    }
+                                    return null;
+                                  },
+                                ),
+                                GlobalConfig.formVerticalSpace,
+                                NfSimconInput(
+                                  taskModel: widget.taskModel,
+                                  controller: controller.nfSimconController,
+                                ),
                                 GlobalConfig.formVerticalSpace,
                                 MsisdnTextForm(
                                   callback: IsInListMsisdn,
@@ -156,7 +158,6 @@ class _SimcardIncludeState extends State<SimcardInclude> {
                                 GlobalConfig.formVerticalSpace,
                                 Row(children: [
                                   DateTextForm(
-                                    focusNode: FocusNodes.DateActiveFocusNode,
                                     controller: controller.idDateActiController,
                                     labelText: 'Data Ativação',
                                   ),
@@ -170,12 +171,6 @@ class _SimcardIncludeState extends State<SimcardInclude> {
                                 GlobalConfig.formVerticalSpace,
                                 SimcardSupplier(
                                   selectedValue: selectedValue,
-                                  titleOne: "NLT",
-                                  titleTwo: "ARQIA",
-                                  slotOne: '1',
-                                  slotTwo: '2',
-                                  valueOne: "NLT",
-                                  valueTwo: "ARQIA",
                                   taskModel: widget.taskModel,
                                   onChanged: (value) {
                                     selectedValue = value;
@@ -183,10 +178,14 @@ class _SimcardIncludeState extends State<SimcardInclude> {
                                       slot = "1";
                                       supplierType = "VIVO";
                                       apn = "datelo.nlt.br";
-                                    } else {
+                                    } else if (selectedValue == "ARQIA") {
                                       slot = "2";
                                       supplierType = "TIM";
                                       apn = "kdl.br";
+                                    } else {
+                                      slot = "2";
+                                      supplierType = "CLARO";
+                                      apn = "lira.br";
                                     }
                                   },
                                   onChanged2: (value) {
@@ -235,6 +234,8 @@ class _SimcardIncludeState extends State<SimcardInclude> {
                                               .idSimcardController.text,
                                           idSimcon: controller
                                               .idSimconController.text,
+                                          nfSimcon: controller
+                                              .nfSimconController.text,
                                           idLine:
                                               controller.idLineController.text,
                                           idIP: controller.idIpController.text,

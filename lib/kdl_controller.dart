@@ -16,13 +16,22 @@ class KdlController {
     ];
   }
 
-  final TextEditingController idSimcardController = TextEditingController();
-  final TextEditingController idSimconController = TextEditingController();
-  final TextEditingController idLineController = TextEditingController();
-  final TextEditingController idIpController = TextEditingController();
-  final TextEditingController idDateActiController = TextEditingController();
-  final TextEditingController idDateInstaController = TextEditingController();
-  final TextEditingController idObservationController = TextEditingController();
+  final TextEditingController idSimcardController =
+      TextEditingController(text: "22222222222222222222");
+  final TextEditingController idSimconController =
+      TextEditingController(text: "2222222");
+  final TextEditingController nfSimconController =
+      TextEditingController(text: "22222");
+  final TextEditingController idLineController =
+      TextEditingController(text: "2222222222222");
+  final TextEditingController idIpController =
+      TextEditingController(text: "222.222.222/12");
+  final TextEditingController idDateActiController =
+      TextEditingController(text: "20/12/1212");
+  final TextEditingController idDateInstaController =
+      TextEditingController(text: "20/12/1212");
+  final TextEditingController idObservationController =
+      TextEditingController(text: "ndfaskndaksnsakn");
 
   void dispose() {
     idSimcardController.dispose();

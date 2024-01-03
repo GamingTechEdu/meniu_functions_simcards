@@ -132,7 +132,7 @@ class _SimconTextFormState extends State<SimconTextForm> {
           }
           if (value.length == 7) {
             FocusNodes.simconFocusNode.unfocus();
-            FocusScope.of(context).requestFocus(FocusNodes.linhaFocusNode);
+            FocusScope.of(context).requestFocus(FocusNodes.nfSimconFocusNode);
           }
         });
       },

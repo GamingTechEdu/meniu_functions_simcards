@@ -188,7 +188,6 @@ class _SimcardEditState extends State<SimcardEdit> {
                                 GlobalConfig.formVerticalSpace,
                                 Row(children: [
                                   DateTextForm(
-                                    focusNode: FocusNodes.DateActiveFocusNode,
                                     controller: controller.idDateActiController,
                                     labelText: 'Data Ativação',
                                   ),
@@ -202,12 +201,6 @@ class _SimcardEditState extends State<SimcardEdit> {
                                 GlobalConfig.formVerticalSpace,
                                 SimcardSupplier(
                                   selectedValue: selectedValue,
-                                  titleOne: "NLT",
-                                  titleTwo: "ARQIA",
-                                  slotOne: '1',
-                                  slotTwo: '2',
-                                  valueOne: "NLT",
-                                  valueTwo: "ARQIA",
                                   taskModel: widget.taskModel,
                                   onChanged: (value) {
                                     selectedValue = value;

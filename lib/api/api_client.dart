@@ -81,6 +81,7 @@ class DataRecordSimcard {
     print("ID do Cliente: ${task.idCostumer}");
     print("ID do Simcard: ${task.idSimcard}");
     print("ID do Simcon: ${task.idSimcon}");
+    print("NF do Simcon: ${task.nfSimcon}");
     print("ID da Linha: ${task.idLine}");
     print("ID do IP: ${task.idIP}");
     print("ID do Fornecedor: ${task.idSupplier}");
@@ -93,7 +94,6 @@ class DataRecordSimcard {
     print("ID da APN: ${task.idApn}");
 
     final apiUrl = Uri.parse("http://187.122.102.36:60060/recordSimcard");
-    // final apiUrl = Uri.parse('http://localhost:8080/recordSimcard/');
     print(jsonBody);
     try {
       final response = await http.post(
