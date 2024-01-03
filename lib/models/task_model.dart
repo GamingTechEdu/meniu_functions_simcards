@@ -10,6 +10,7 @@ class TaskModel {
   String idObservations;
   String? supplierType;
   String? idPlan;
+  String? idDateExpe;
   String? idDateActi;
   String? idDateinsta;
   String? idApn;
@@ -26,6 +27,7 @@ class TaskModel {
     this.idObservations = "",
     this.supplierType,
     this.idPlan,
+    this.idDateExpe,
     this.idDateActi,
     this.idDateinsta,
     this.idApn,
@@ -44,6 +46,7 @@ class TaskModel {
       idObservations: json["idObservations"],
       supplierType: json["supplierType"],
       idPlan: json["idPlan"],
+      idDateExpe: json["idDateExpe"],
       idDateActi: json["idDateActi"],
       idDateinsta: json["idDateinsta"],
       idApn: json["idApn"],
@@ -63,6 +66,7 @@ class TaskModel {
       "Obs": idObservations,
       "Operator": supplierType,
       "Plan": idPlan,
+      "Deliverydate": idDateExpe,
       "Activationdate": idDateActi,
       "Installationdate": idDateinsta,
       "Apn": idApn,

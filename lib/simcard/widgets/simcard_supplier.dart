@@ -4,14 +4,16 @@ import '../../common/global_config.dart';
 import '../../models/task_model.dart';
 
 class SimcardSupplier extends StatefulWidget {
-  String? selectedValue;
-  final Function(String)? onChanged, onChanged2;
+  String? selectedValue, selectedValue2;
+  final Function(String)? onChanged, onChanged2, onChanged3;
   final TaskModel taskModel;
 
   SimcardSupplier({
     this.onChanged,
     this.onChanged2,
+    this.onChanged3,
     required this.selectedValue,
+    this.selectedValue2,
     required this.taskModel,
   });
 
@@ -69,6 +71,7 @@ class _SimcardSupplierState extends State<SimcardSupplier> {
             Text("LIRA"),
           ],
         ),
+        GlobalConfig.formVerticalSpace,
         if (widget.selectedValue != null && widget.selectedValue == "NLT")
           DropdownButtonFormField(
             elevation: 1,
@@ -115,26 +118,62 @@ class _SimcardSupplierState extends State<SimcardSupplier> {
             },
           ),
         if (widget.selectedValue != null && widget.selectedValue == "LIRA")
-          DropdownButtonFormField(
-            elevation: 1,
-            isDense: true,
-            isExpanded: true,
-            icon: const Icon(Icons.keyboard_arrow_down_outlined),
-            borderRadius: BorderRadius.circular(5),
-            focusColor: Colors.transparent,
-            hint: const Text("Selecione o Plano"),
-            items: ArqiaPlan.map((plan) {
-              return DropdownMenuItem<String>(
-                value: plan,
-                child: Text(plan),
-              );
-            }).toList(),
-            onChanged: (value) {
-              widget.taskModel.idPlan = value;
-              plan = value;
-              print(widget.onChanged2!(value!));
-              widget.onChanged2!(value!);
-            },
+          Column(
+            children: [
+              Text('Selecione o Slot'),
+              GlobalConfig.formVerticalSpace10,
+              Row(
+                children: [
+                  Radio(
+                    value: "1",
+                    groupValue: widget.selectedValue,
+                    onChanged: (value) {
+                      setState(() {
+                        //   widget.taskModel.idSupplier = value;
+                        widget.selectedValue2 = value;
+                        widget.onChanged3!(value!);
+                      });
+                    },
+                  ),
+                  Text("Slot 1"),
+                  GlobalConfig.formHorizontalSpace,
+                  Radio(
+                    value: "2",
+                    groupValue: widget.selectedValue,
+                    onChanged: (value) {
+                      // setState(() {
+                      //   widget.taskModel.idSupplier = value;
+                      //   widget.selectedValue = value;
+                      //   widget.onChanged!(value!);
+                      // });
+                    },
+                  ),
+                  Text("Slot 2"),
+                ],
+              ),
+              GlobalConfig.formVerticalSpace10,
+              DropdownButtonFormField(
+                elevation: 1,
+                isDense: true,
+                isExpanded: true,
+                icon: const Icon(Icons.keyboard_arrow_down_outlined),
+                borderRadius: BorderRadius.circular(5),
+                focusColor: Colors.transparent,
+                hint: const Text("Selecione o Plano"),
+                items: ArqiaPlan.map((plan) {
+                  return DropdownMenuItem<String>(
+                    value: plan,
+                    child: Text(plan),
+                  );
+                }).toList(),
+                onChanged: (value) {
+                  widget.taskModel.idPlan = value;
+                  plan = value;
+                  print(widget.onChanged2!(value!));
+                  widget.onChanged2!(value!);
+                },
+              ),
+            ],
           ),
       ],
     );

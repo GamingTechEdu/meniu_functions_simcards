@@ -3,7 +3,7 @@ import 'package:menu_functions_simcards/common/global_config.dart';
 import 'package:menu_functions_simcards/common/menu_button.dart';
 import 'package:menu_functions_simcards/kdl_controller.dart';
 import 'package:menu_functions_simcards/models/task_model.dart';
-import 'package:menu_functions_simcards/simcard/edit_simcard.dart';
+import 'package:menu_functions_simcards/simcard/include_stock.dart';
 import 'package:menu_functions_simcards/simcard/model.dart';
 import 'package:menu_functions_simcards/simcard/simcard_include.dart';
 import 'package:menu_functions_simcards/simcard/simcard_menu.dart';

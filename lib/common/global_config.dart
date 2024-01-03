@@ -69,6 +69,7 @@ class GlobalConfig {
 
   static final formKey = GlobalKey<FormState>();
 
+  static const SizedBox formVerticalSpace10 = SizedBox(height: 10);
   static const SizedBox formVerticalSpace = SizedBox(height: 15);
   static const SizedBox formHorizontalSpace = SizedBox(width: 50);
   static const SizedBox formHorizontalSpace20 = SizedBox(width: 10);

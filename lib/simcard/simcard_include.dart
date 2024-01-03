@@ -117,26 +117,6 @@ class _SimcardIncludeState extends State<SimcardInclude> {
                                   },
                                 ),
                                 GlobalConfig.formVerticalSpace,
-                                SimconTextForm(
-                                  controller: controller.idSimconController,
-                                  callback: IsInListSimcon,
-                                  taskModel: widget.taskModel,
-                                  validator: (value) {
-                                    if (isInListSimcon == true) {
-                                      return "Número do SIMCON já cadastrado!";
-                                    }
-                                    if (value!.isEmpty) {
-                                      return "Número do SIMCON obrigatório";
-                                    }
-                                    return null;
-                                  },
-                                ),
-                                GlobalConfig.formVerticalSpace,
-                                NfSimconInput(
-                                  taskModel: widget.taskModel,
-                                  controller: controller.nfSimconController,
-                                ),
-                                GlobalConfig.formVerticalSpace,
                                 MsisdnTextForm(
                                   callback: IsInListMsisdn,
                                   controller: controller.idLineController,
@@ -191,6 +171,38 @@ class _SimcardIncludeState extends State<SimcardInclude> {
                                   onChanged2: (value) {
                                     plan = value;
                                   },
+                                  onChanged3: (value) {
+                                    slot = value;
+                                  },
+                                ),
+                                GlobalConfig.formVerticalSpace,
+                                SimconTextForm(
+                                  controller: controller.idSimconController,
+                                  callback: IsInListSimcon,
+                                  taskModel: widget.taskModel,
+                                  validator: (value) {
+                                    if (isInListSimcon == true) {
+                                      return "Número do SIMCON já cadastrado!";
+                                    }
+                                    if (value!.isEmpty) {
+                                      return "Número do SIMCON obrigatório";
+                                    }
+                                    return null;
+                                  },
+                                ),
+                                GlobalConfig.formVerticalSpace,
+                                NfSimconInput(
+                                  taskModel: widget.taskModel,
+                                  controller: controller.nfSimconController,
+                                ),
+                                GlobalConfig.formVerticalSpace,
+                                Row(
+                                  children: [
+                                    DateTextForm(
+                                      controller: controller.idDateExpedition,
+                                      labelText: 'Data de Expedição',
+                                    ),
+                                  ],
                                 ),
                                 GlobalConfig.formVerticalSpace,
                                 TextFormField(
@@ -221,6 +233,10 @@ class _SimcardIncludeState extends State<SimcardInclude> {
 
                                         widget.onOutput(widget.taskModel);
 
+                                        final formattedExpeditionDate =
+                                            formatDate(controller
+                                                .idDateExpedition.text);
+
                                         final formattedActivationDate =
                                             formatDate(controller
                                                 .idDateActiController.text);
@@ -245,6 +261,7 @@ class _SimcardIncludeState extends State<SimcardInclude> {
                                           idSupplier: selectedValue,
                                           idObservations: controller
                                               .idObservationController.text,
+                                          idDateExpe: formattedExpeditionDate,
                                           idDateActi: formattedActivationDate,
                                           idDateinsta:
                                               formattedInstallationDate,

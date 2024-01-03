@@ -14,6 +14,7 @@ import 'package:menu_functions_simcards/simcard/widgets/simcard_supplier.dart';
 import 'package:menu_functions_simcards/simcard/widgets/simcon_textform.dart';
 import 'package:provider/provider.dart';
 import './model.dart';
+import 'atomsStock/stock.dart';
 
 class SimcardEdit extends StatefulWidget {
   final OnOutput onOutput;
@@ -112,129 +113,130 @@ class _SimcardEditState extends State<SimcardEdit> {
                             key: GlobalConfig.formKey,
                             child: Column(
                               children: [
-                                DropdownButtonFormField<String>(
-                                  elevation: 1,
-                                  isDense: true,
-                                  isExpanded: true,
-                                  icon: const Icon(
-                                      Icons.keyboard_arrow_down_outlined),
-                                  focusColor: Colors.transparent,
-                                  borderRadius: BorderRadius.circular(5),
-                                  value: testeDrop,
-                                  items: costumerList.map((costumer) {
-                                    return DropdownMenuItem<String>(
-                                      value: costumer,
-                                      child: Text(costumer),
-                                    );
-                                  }).toList(),
-                                  onChanged: (value) {
-                                    selectedCostumer = value!;
-                                  },
-                                  validator: (value) {
-                                    if (value == 'Selecione um Cliente') {
-                                      return 'Por favor, selecione um cliente';
-                                    }
-                                    return null;
-                                  },
-                                ),
-                                GlobalConfig.formVerticalSpace,
-                                IccidTextForm(
-                                  controller: _nameController,
-                                  callback: IsInListIccid,
-                                  taskModel: widget.taskModel,
-                                  validator: (value) {
-                                    if (isInListIccid == true) {
-                                      return "Número do ICCID já cadastrado!";
-                                    }
-                                    if (value!.isEmpty) {
-                                      return "Número do SIMCON obrigatório";
-                                    }
-                                    return null;
-                                  },
-                                ),
-                                GlobalConfig.formVerticalSpace,
-                                SimconTextForm(
-                                    controller: _numberController,
-                                    callback: IsInListSimcon,
-                                    taskModel: widget.taskModel,
-                                    validator: (value) {
-                                      if (isInListSimcon == true) {
-                                        return "Número do SIMCON já cadastrado!";
-                                      }
-                                      if (value!.isEmpty) {
-                                        return "Número do SIMCON obrigatório";
-                                      }
-                                      return null;
-                                    }),
-                                GlobalConfig.formVerticalSpace,
-                                MsisdnTextForm(
-                                  callback: IsInListMsisdn,
-                                  controller: controller.idLineController,
-                                  taskModel: widget.taskModel,
-                                  validator: (value) {
-                                    if (isInListMsisdn == true) {
-                                      return "Número do MSISDN já cadastrado!";
-                                    }
-                                    if (value!.isEmpty) {
-                                      return "Número do MSISDN obrigatório";
-                                    }
-                                    return null;
-                                  },
-                                ),
-                                GlobalConfig.formVerticalSpace,
-                                IpTextForm(
-                                    controller: controller.idIpController,
-                                    taskModel: widget.taskModel),
-                                GlobalConfig.formVerticalSpace,
-                                Row(children: [
-                                  DateTextForm(
-                                    controller: controller.idDateActiController,
-                                    labelText: 'Data Ativação',
-                                  ),
-                                  GlobalConfig.formHorizontalSpace20,
-                                  DateTextForm(
-                                    controller:
-                                        controller.idDateInstaController,
-                                    labelText: 'Data Instalação',
-                                  ),
-                                ]),
-                                GlobalConfig.formVerticalSpace,
-                                SimcardSupplier(
-                                  selectedValue: selectedValue,
-                                  taskModel: widget.taskModel,
-                                  onChanged: (value) {
-                                    selectedValue = value;
-                                    if (selectedValue == "NLT") {
-                                      slot = "1";
-                                      supplierType = "VIVO";
-                                      apn = "datelo.nlt.br";
-                                    } else {
-                                      slot = "2";
-                                      supplierType = "TIM";
-                                      apn = "kdl.br";
-                                    }
-                                  },
-                                  onChanged2: (value) {
-                                    plan = value;
-                                  },
-                                ),
-                                GlobalConfig.formVerticalSpace,
-                                TextFormField(
-                                  maxLines: 2,
-                                  controller:
-                                      controller.idObservationController,
-                                  decoration: const InputDecoration(
-                                    label: Text('Observações'),
-                                    contentPadding: EdgeInsets.only(
-                                        top: 20,
-                                        left: 15,
-                                        right: 15,
-                                        bottom: 15),
-                                  ),
-                                  onChanged: (value) =>
-                                      widget.taskModel.idObservations = value,
-                                ),
-                                GlobalConfig.formVerticalSpace,
+                                // DropdownButtonFormField<String>(
+                                //   elevation: 1,
+                                //   isDense: true,
+                                //   isExpanded: true,
+                                //   icon: const Icon(
+                                //       Icons.keyboard_arrow_down_outlined),
+                                //   focusColor: Colors.transparent,
+                                //   borderRadius: BorderRadius.circular(5),
+                                //   value: testeDrop,
+                                //   items: costumerList.map((costumer) {
+                                //     return DropdownMenuItem<String>(
+                                //       value: costumer,
+                                //       child: Text(costumer),
+                                //     );
+                                //   }).toList(),
+                                //   onChanged: (value) {
+                                //     selectedCostumer = value!;
+                                //   },
+                                //   validator: (value) {
+                                //     if (value == 'Selecione um Cliente') {
+                                //       return 'Por favor, selecione um cliente';
+                                //     }
+                                //     return null;
+                                //   },
+                                // ),
+                                // GlobalConfig.formVerticalSpace,
+                                // IccidTextForm(
+                                //   controller: _nameController,
+                                //   callback: IsInListIccid,
+                                //   taskModel: widget.taskModel,
+                                //   validator: (value) {
+                                //     if (isInListIccid == true) {
+                                //       return "Número do ICCID já cadastrado!";
+                                //     }
+                                //     if (value!.isEmpty) {
+                                //       return "Número do SIMCON obrigatório";
+                                //     }
+                                //     return null;
+                                //   },
+                                // ),
+                                // GlobalConfig.formVerticalSpace,
+                                // SimconTextForm(
+                                //     controller: _numberController,
+                                //     callback: IsInListSimcon,
+                                //     taskModel: widget.taskModel,
+                                //     validator: (value) {
+                                //       if (isInListSimcon == true) {
+                                //         return "Número do SIMCON já cadastrado!";
+                                //       }
+                                //       if (value!.isEmpty) {
+                                //         return "Número do SIMCON obrigatório";
+                                //       }
+                                //       return null;
+                                //     }),
+                                // GlobalConfig.formVerticalSpace,
+                                // MsisdnTextForm(
+                                //   callback: IsInListMsisdn,
+                                //   controller: controller.idLineController,
+                                //   taskModel: widget.taskModel,
+                                //   validator: (value) {
+                                //     if (isInListMsisdn == true) {
+                                //       return "Número do MSISDN já cadastrado!";
+                                //     }
+                                //     if (value!.isEmpty) {
+                                //       return "Número do MSISDN obrigatório";
+                                //     }
+                                //     return null;
+                                //   },
+                                // ),
+                                // GlobalConfig.formVerticalSpace,
+                                // IpTextForm(
+                                //     controller: controller.idIpController,
+                                //     taskModel: widget.taskModel),
+                                // GlobalConfig.formVerticalSpace,
+                                // Row(children: [
+                                //   DateTextForm(
+                                //     controller: controller.idDateActiController,
+                                //     labelText: 'Data Ativação',
+                                //   ),
+                                //   GlobalConfig.formHorizontalSpace20,
+                                //   DateTextForm(
+                                //     controller:
+                                //         controller.idDateInstaController,
+                                //     labelText: 'Data Instalação',
+                                //   ),
+                                // ]),
+                                // GlobalConfig.formVerticalSpace,
+                                // SimcardSupplier(
+                                //   selectedValue: selectedValue,
+                                //   taskModel: widget.taskModel,
+                                //   onChanged: (value) {
+                                //     selectedValue = value;
+                                //     if (selectedValue == "NLT") {
+                                //       slot = "1";
+                                //       supplierType = "VIVO";
+                                //       apn = "datelo.nlt.br";
+                                //     } else {
+                                //       slot = "2";
+                                //       supplierType = "TIM";
+                                //       apn = "kdl.br";
+                                //     }
+                                //   },
+                                //   onChanged2: (value) {
+                                //     plan = value;
+                                //   },
+                                // ),
+                                // GlobalConfig.formVerticalSpace,
+                                // TextFormField(
+                                //   maxLines: 2,
+                                //   controller:
+                                //       controller.idObservationController,
+                                //   decoration: const InputDecoration(
+                                //     label: Text('Observações'),
+                                //     contentPadding: EdgeInsets.only(
+                                //         top: 20,
+                                //         left: 15,
+                                //         right: 15,
+                                //         bottom: 15),
+                                //   ),
+                                //   onChanged: (value) =>
+                                //       widget.taskModel.idObservations = value,
+                                // ),
+                                // GlobalConfig.formVerticalSpace,
+                                // MyApp(),
                                 SizedBox(
                                   width: double.infinity,
                                   height: 40,

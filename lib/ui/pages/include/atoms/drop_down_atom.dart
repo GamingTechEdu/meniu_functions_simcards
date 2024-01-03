@@ -14,7 +14,8 @@ class DropDownAtom extends StatelessWidget {
     List<String> costumerList = [
       'Selecione um Cliente',
       'ILUMINA SP',
-      'GUARULHOS LUZ'
+      'GUARULHOS LUZ',
+      'TERESINA LUZ'
     ];
 
     String selectedCostumer = costumerList[1];

@@ -89,6 +89,7 @@ class DataRecordSimcard {
     print("ID das Observações: ${task.idObservations}");
     print("Tipo de Fornecedor: ${task.supplierType}");
     print("ID do Plano: ${task.idPlan}");
+    print("Data de Expedicao: ${task.idDateExpe}");
     print("Data de Ativação: ${task.idDateActi}");
     print("Data de Instalação: ${task.idDateinsta}");
     print("ID da APN: ${task.idApn}");

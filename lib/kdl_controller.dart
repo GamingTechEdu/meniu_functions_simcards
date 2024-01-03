@@ -30,6 +30,8 @@ class KdlController {
       TextEditingController(text: "20/12/1212");
   final TextEditingController idDateInstaController =
       TextEditingController(text: "20/12/1212");
+  final TextEditingController idDateExpedition =
+      TextEditingController(text: "20/12/2020");
   final TextEditingController idObservationController =
       TextEditingController(text: "ndfaskndaksnsakn");
 
@@ -38,6 +40,7 @@ class KdlController {
     idSimconController.dispose();
     idLineController.dispose();
     idIpController.dispose();
+    idDateExpedition.dispose();
     idDateActiController.dispose();
     idDateInstaController.dispose();
     idObservationController.dispose();
