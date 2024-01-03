@@ -163,17 +163,17 @@ class _SimcardIncludeState extends State<SimcardInclude> {
                                       supplierType = "TIM";
                                       apn = "kdl.br";
                                     } else {
-                                      slot = "2";
+                                      slot = '2';
                                       supplierType = "CLARO";
                                       apn = "lira.br";
                                     }
                                   },
-                                  onChanged2: (value) {
-                                    plan = value;
-                                  },
-                                  onChanged3: (value) {
-                                    slot = value;
-                                  },
+                                  // onChanged2: (value) {
+                                  //   plan = value;
+                                  // },
+                                  // onChanged3: (value) {
+                                  //   slot = value;
+                                  // },
                                 ),
                                 GlobalConfig.formVerticalSpace,
                                 SimconTextForm(

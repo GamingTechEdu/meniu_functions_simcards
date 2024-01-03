@@ -6,13 +6,11 @@ import '../widgets/widgets.dart';
 
 class SimcardSupplier extends StatefulWidget {
   String? selectedValue, selectedValue2;
-  final Function(String)? onChanged, onChanged2, onChanged3;
+  final Function(String)? onChanged;
   final TaskModel taskModel;
 
   SimcardSupplier({
     this.onChanged,
-    this.onChanged2,
-    this.onChanged3,
     required this.selectedValue,
     this.selectedValue2,
     required this.taskModel,
@@ -34,24 +32,40 @@ class _SimcardSupplierState extends State<SimcardSupplier> {
           children: [
             IncludeRadioSupplierWidget(
               value: 'NLT',
+              label: "NLT",
               groupValue: widget.selectedValue,
-              taskModel: widget.taskModel,
+              onChanged: (value) {
+                setState(() {
+                  widget.taskModel.idSupplier = value;
+                  widget.selectedValue = value;
+                  widget.onChanged!(value!);
+                });
+              },
             ),
-            const Text("NLT"),
-            GlobalConfig.formHorizontalSpace,
             IncludeRadioSupplierWidget(
-              value: "ARQIA",
+              value: 'ARQIA',
+              label: "ARQIA",
               groupValue: widget.selectedValue,
-              taskModel: widget.taskModel,
+              onChanged: (value) {
+                setState(() {
+                  widget.taskModel.idSupplier = value;
+                  widget.selectedValue = value;
+                  widget.onChanged!(value!);
+                });
+              },
             ),
-            const Text("ARQIA"),
-            GlobalConfig.formHorizontalSpace,
             IncludeRadioSupplierWidget(
-              value: "LIRA",
+              value: 'LIRA',
+              label: "LIRA",
               groupValue: widget.selectedValue,
-              taskModel: widget.taskModel,
+              onChanged: (value) {
+                setState(() {
+                  widget.taskModel.idSupplier = value;
+                  widget.selectedValue = value;
+                  widget.onChanged!(value!);
+                });
+              },
             ),
-            const Text("LIRA"),
           ],
         ),
         GlobalConfig.formVerticalSpace,
@@ -85,12 +99,12 @@ class _SimcardSupplierState extends State<SimcardSupplier> {
                 children: [
                   Radio(
                     value: "1",
-                    groupValue: widget.selectedValue,
+                    groupValue: widget.selectedValue2,
                     onChanged: (value) {
                       setState(() {
-                        //   widget.taskModel.idSupplier = value;
+                        widget.taskModel.idSlot = value;
                         widget.selectedValue2 = value;
-                        widget.onChanged3!(value!);
+                        widget.onChanged!(value!);
                       });
                     },
                   ),
@@ -98,13 +112,13 @@ class _SimcardSupplierState extends State<SimcardSupplier> {
                   GlobalConfig.formHorizontalSpace,
                   Radio(
                     value: "2",
-                    groupValue: widget.selectedValue,
+                    groupValue: widget.selectedValue2,
                     onChanged: (value) {
-                      // setState(() {
-                      //   widget.taskModel.idSupplier = value;
-                      //   widget.selectedValue = value;
-                      //   widget.onChanged!(value!);
-                      // });
+                      setState(() {
+                        widget.taskModel.idSlot = value;
+                        widget.selectedValue2 = value;
+                        widget.onChanged!(value!);
+                      });
                     },
                   ),
                   Text("Slot 2"),
@@ -125,3 +139,30 @@ class _SimcardSupplierState extends State<SimcardSupplier> {
     );
   }
 }
+
+// IncludeRadioSupplierWidget(
+//   value: 'NLT',
+//   groupValue: widget.selectedValue,
+//   onChanged: (value) {
+//     setState(() {
+//       widget.taskModel.idSupplier = value;
+//       widget.selectedValue = value;
+//       widget.onChanged!(value!);
+//     });
+//   },
+// ),
+// const Text("NLT"),
+// GlobalConfig.formHorizontalSpace,
+// IncludeRadioSupplierWidget(
+//   value: "ARQIA",
+//   groupValue: widget.selectedValue2,
+//   taskModel: widget.taskModel,
+// ),
+// const Text("ARQIA"),
+// GlobalConfig.formHorizontalSpace,
+// IncludeRadioSupplierWidget(
+//   value: "LIRA",
+//   groupValue: widget.selectedValue3,
+//   taskModel: widget.taskModel,
+// ),
+// const Text("LIRA"),

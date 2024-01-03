@@ -1,32 +1,40 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:menu_functions_simcards/common/global_config.dart';
 
 import '../../models/task_model.dart';
 
 class IncludeRadioSupplierWidget extends StatelessWidget {
   final String value;
   final String? groupValue;
-  final TaskModel taskModel;
   final Function(String)? onChanged;
   String? selectedValue;
+  final String label;
 
   IncludeRadioSupplierWidget(
       {super.key,
       required this.value,
       this.groupValue,
-      required this.taskModel,
-      this.onChanged});
+      this.onChanged,
+      required this.label});
 
   @override
   Widget build(BuildContext context) {
-    return Radio(
-      value: value,
-      groupValue: groupValue,
-      onChanged: (value) {
-        taskModel.idSupplier = value;
-        selectedValue = value;
-        onChanged!(value!);
-      },
+    final task = TaskModel();
+    return Row(
+      children: [
+        Radio(
+          value: value,
+          groupValue: groupValue,
+          onChanged: (value) {
+            task.idSupplier = value;
+            selectedValue = value;
+            onChanged!(value!);
+          },
+        ),
+        Text(label),
+        GlobalConfig.formHorizontalSpace20
+      ],
     );
   }
 }
